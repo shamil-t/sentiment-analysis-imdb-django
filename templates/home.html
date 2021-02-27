@@ -1,0 +1,165 @@
+
+<head>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        
+</head>
+<input style="visibility: gone;" type="text" value="{{nmv}}" id="nvm"/>
+<input style="visibility: gone;" type="text" value="{{pmv}}" id="pvm"/>
+<div id="nav">
+    <a id="nav_h">
+        <img id="logo_img" src="{% static 'imdblogo.png'%}" width="80" height="40"/>
+        IMDB Review
+    </a>
+        
+</div>
+<body onload="load()">
+    
+    <div id="movie">
+        <div id="m_title">
+            <h1>{{ movie.movie_title }}</h1>
+            
+            <div class="subtext">
+                PG-13
+                <span class="ghost">|</span> 
+                <time datetime="PT181M">3h 1min</time>
+                <span class="ghost">|</span>
+                <a>Action</a>, 
+                <a>Adventure</a>, 
+                <a>Drama</a>
+                <span class="ghost">|</span>
+                <a  title="See more release dates">26 April 2019 (USA)</a> 
+            </div>
+
+            <div class="m_rating">
+                <div class="imdbRating" style="float: left;">
+                        <div class="ratingValue">
+                            <i class="material-icons" style="color: #cccc00; font-size: 40px;">star</i>
+                            <strong><span style="font-size: 36px;">8.4</span></strong>
+                            <span style="color: grey;">/</span><span style="color: grey;">10</span>
+                        </div>
+                        <center><a><span style="font-size: small;">747,269</span></a></center>
+                </div>
+                <div id="rate_btn" style="float: right;">
+                    <div>
+                        <a href="#reviews">
+                            <i class="material-icons" style="color: whitesmoke; font-size: 40px;">star</i>
+                            <span style="text-align: center;color: #fff;">Rate This</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="m_img" style=" display: flex; ">
+            <img src="http://localhost:8000/{{ movie.m_img }}" width="25%" height="400" style="margin-left: 10px; margin: auto;">
+            <iframe style="margin: auto; float: right;" width="75%" height="400" src="{{ movie.trailer }}"></iframe>
+        </div>
+
+        <div id="m_desc">
+            <div class="plot_summary ">
+                <div style="font-size: 18px; font-family: monospace;">
+                       {{movie.storyline}}
+                </div>
+    
+                <div class="credit_summary_item" style="margin-top: 35px;">
+                    <h4>Directors:</h4>
+                    Anthony Russo, Joe Russo
+                </div>
+                <div class="credit_summary_item">
+                    <h4>Writers:</h4>
+                    Christopher Markus (screenplay by), Stephen McFeely (screenplay by)
+                </div>
+                <div class="credit_summary_item">
+                    <h4>Stars:</h4>
+                    Robert Downey Jr., Chris Evans, Mark Ruffalo<span class="ghost">|</span>
+                    <a>See full cast &amp; crew</a>&nbsp;»
+                </div>
+            </div>
+            <div id="sentiment_meter" style=" width: 100%; display: flex;
+            flex-direction: row;
+            justify-content: center;">
+                <figure class="highcharts-figure">
+                    <div id="container-speed" class="chart-container"></div>
+                    <div id="container-rpm" class="chart-container"></div>
+                </figure>
+            </div>
+        </div>
+        
+
+        <div id="reviews">
+            <h2>Reviews</h2>
+            <div id="r_txt">
+                
+                <center>
+                    <form method="POST" action=".">{% csrf_token %}
+                        <textarea type="text" name="review" placeholder="write your Reivew" required></textarea>
+                        <br/><input class="btn" type="submit" />
+                    </form>
+                </center>
+            </div>
+            
+            <div id="u_review">
+                <center>
+                     <table>
+                        <tbody>
+                            {% for review in reviewlist %}
+                            <tr>
+                                <td width="80%" height="30px">{{ review.review }}</td>
+                                <td> 
+                                    <div class="emoji">
+                                        {% if review.impression == "Positive" %} 
+                                        &#128512;
+                                        {% else %}
+                                        &#128577;
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>   
+                </center>
+                
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script src="{% static 'speedometer.js' %}"></script>
+<script>
+     var point,
+      newVal,
+      inc;
+
+  if (chartSpeed) {
+      var p = document.getElementById('pvm').value
+      newVal = parseInt(p)
+
+      point = chartSpeed.series[0].points[0];
+      
+      point.update(newVal);
+  }
+
+  // RPM
+  if (chartRpm) {
+      var p = document.getElementById('nvm').value
+      newVal = parseInt(p)
+      
+      point = chartRpm.series[0].points[0];
+      
+      point.update(newVal);
+  }
+</script>

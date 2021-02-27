@@ -1,0 +1,46 @@
+<head>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<div id="nav">
+    <a id="nav_h">
+        <img id="logo_img" src="{% static 'imdblogo.png'%}" width="80" height="40"/>
+        <b>IMDb</b> Review
+    </a>
+    <div class="search-container">
+        <form method="POST" action=".">{% csrf_token %}
+          <input type="text" placeholder="Search movies here..!!" name="search" />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+        
+</div>
+
+<body>
+    <div id="movie_grid">
+        <div class="grid-container">
+            {% if movies %}
+                {% for movie in movies %}
+                <div class="grid-item" 
+                    onclick=window.location.href="{% url 'home' id=movie.id %}">
+                    <img src="{{movie.m_img}}" width="300" height="400"/>
+                    <h3 id="movie_t" style="font-size: large;font-family: Arial, Helvetica, sans-serif;">
+                        {{ movie.movie_title }}</h3>
+                </div>
+                {% endfor %}
+            
+                {% else %}
+
+                No Results Found
+
+            {% endif %}
+
+      </div>
+    </div>
+    
+</body>
