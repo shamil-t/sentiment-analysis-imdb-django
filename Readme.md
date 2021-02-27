@@ -4,7 +4,7 @@
 2. install xampp
 3. install django
 
-$ pip install django
+> $ pip install django
 
 4. open terminal in root directory where manage.py resides
 
@@ -12,7 +12,7 @@ $ pip install django
 
 $ py manage.py makemigrations
 
->>> py manage.py migrate
+> $ py manage.py migrate
 
 5.open xampp and start apache & mysql
 
@@ -21,13 +21,16 @@ $ py manage.py makemigrations
 7.open databse imdb and import imdb.sql
 
 8.then open a terminal in root directory where manage.py resides and run the command
->>> py nanage.py runserver
+
+> $ py nanage.py runserver
 
 
-    
 
-homepage-> http://localhost:8000/
-addmovie-> http://localhost:8000/addmovie
+- homepage-> http://localhost:8000/
+- addmovie-> http://localhost:8000/addmovie
     
     
 Done
+
+
+THANK YOU ✌✌✌✌✌
