@@ -14,7 +14,9 @@
 
 4 .open xampp and start apache & mysql
 
-6 .open phpmyadmin http://localhost/phpmyadmin
+6 .open phpmyadmin
+
+- http://localhost/phpmyadmin
 
 7 .create databse with name 'imdb' and import imdb.sql
 
@@ -22,11 +24,11 @@
 
 ### In terminal run the command
 
-> $ py manage.py makemigrations
+> $ python3 manage.py makemigrations
 
-> $ py manage.py migrate
+> $ python3 manage.py migrate
 
-> $ py nanage.py runserver
+> $ python3 nanage.py runserver
 
 
 
