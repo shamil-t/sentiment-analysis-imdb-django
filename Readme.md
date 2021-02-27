@@ -38,5 +38,33 @@
     
 Done
 
+### Screen Shots
+
+1. Home Page
+
+![Home Page](https://github.com/shamil-t/sentiment-analysis-imdb-django/blob/main/ScreenShots/home1.png?raw=true)
+
+2. Movie Page
+
+- ![Movie Page 1](https://github.com/shamil-t/sentiment-analysis-imdb-django/blob/main/ScreenShots/ss2.png?raw=true)
+
+- ![Movie Page 2](https://github.com/shamil-t/sentiment-analysis-imdb-django/blob/main/ScreenShots/ss3.png?raw=true)
+
+3. Review Graph Representation
+
+- ![Review 1](https://github.com/shamil-t/sentiment-analysis-imdb-django/blob/main/ScreenShots/review1.png?raw=true)
+
+4. Review Text
+
+- ![Review 2](https://github.com/shamil-t/sentiment-analysis-imdb-django/blob/main/ScreenShots/review2.png?raw=true)
+
+5. Add Movie Page
+
+- ![Review 2](https://github.com/shamil-t/sentiment-analysis-imdb-django/blob/main/ScreenShots/addmovie.png?raw=true)
+
+
+
+
+
 
 THANK YOU ✌✌✌✌✌
